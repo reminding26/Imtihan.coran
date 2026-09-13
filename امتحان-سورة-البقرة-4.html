@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أكاديمية رضا الرحمن مبتغانا 🌷 إمتحان الجزء الأول من سورة البقرة</title>
+<style>
+  :root{
+    --deep-green:#0b4a3a;
+    --deep-green-2:#0f5a46;
+    --teal:#1c6e63;
+    --gold:#c9a227;
+    --gold-light:#f0dfa0;
+    --maroon:#7a2e2e;
+    --cream:#faf3e3;
+    --cream-2:#f3ead2;
+    --ink:#182620;
+    --ink-soft:#4f5c53;
+    --danger:#8a3324;
+    --ok:#2f6b4f;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 12% 6%, rgba(201,162,39,0.14) 0, transparent 42%),
+      radial-gradient(circle at 90% 12%, rgba(28,110,99,0.10) 0, transparent 38%),
+      radial-gradient(circle at 88% 94%, rgba(11,74,58,0.12) 0, transparent 40%),
+      radial-gradient(circle at 6% 92%, rgba(122,46,46,0.06) 0, transparent 35%);
+    font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif;
+    color: var(--ink);
+    min-height:100vh;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding: 32px 16px 64px;
+  }
+  .wrap{ width:100%; max-width:720px; }
+  .brand{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; margin-bottom:22px; text-align:center; }
+  .brand .acad{
+    font-family:'Traditional Arabic','Arial',serif; font-size:19px; font-weight:700;
+    color: var(--maroon); letter-spacing:0.3px;
+  }
+  .brand h1{ font-family:'Traditional Arabic','Arial',serif; font-size:21px; color:var(--deep-green); margin:0; font-weight:700; }
+  .card{
+    background: var(--cream-2);
+    border: 1px solid rgba(11,74,58,0.16);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 14px 34px rgba(20,30,25,0.09);
+    overflow:hidden;
+    position:relative;
+  }
+  .card::before{ content:""; display:block; height:7px; background: linear-gradient(90deg, var(--maroon), var(--gold) 30%, var(--deep-green) 55%, var(--gold) 80%, var(--teal)); }
+  .mosaic{
+    height:10px;
+    background-image: linear-gradient(45deg, var(--gold) 25%, transparent 25%), linear-gradient(-45deg, var(--gold) 25%, transparent 25%);
+    background-size: 14px 14px;
+    background-position: 0 0, 0 0;
+    opacity:0.35;
+  }
+  .pad{ padding: 32px 30px; }
+
+  .intro-motif{ width:76px;height:76px;margin:0 auto 18px; display:flex;align-items:center;justify-content:center; }
+  .intro h2{ font-family:'Traditional Arabic','Arial',serif; text-align:center; font-size:24px; color:var(--deep-green); margin: 0 0 6px; }
+  .intro p.lead{ text-align:center; color:var(--ink-soft); font-size:15px; line-height:1.9; max-width:480px; margin: 0 auto 22px; }
+  .facts{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:24px; }
+  .fact{ background: var(--cream); border:1px solid rgba(14,59,46,0.12); border-radius:10px; padding:14px 8px; text-align:center; }
+  .fact b{ display:block; font-family:'Traditional Arabic','Arial',serif; font-size:20px; color:var(--deep-green); }
+  .fact span{ font-size:12px; color:var(--ink-soft); }
+
+  label.field-label{ display:block; font-size:13.5px; font-weight:700; color:var(--deep-green); margin-bottom:6px; }
+  input.field-input{
+    width:100%;
+    background: var(--cream);
+    border:1.5px solid rgba(14,59,46,0.2);
+    border-radius:10px;
+    padding:13px 14px;
+    font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif;
+    font-size:15px;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  input.field-input:focus{ outline:none; border-color:var(--gold); }
+
+  button.primary{
+    display:block; width:100%;
+    background: var(--deep-green); color: var(--gold-light);
+    border:none; border-radius:10px; padding:16px;
+    font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif; font-weight:700; font-size:17px;
+    cursor:pointer; transition: background .15s ease, transform .1s ease;
+  }
+  button.primary:hover{ background: var(--deep-green-2); }
+  button.primary:active{ transform: scale(0.99); }
+  button.primary:disabled{ opacity:.45; cursor:not-allowed; }
+
+  .quiz-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .qcount{ font-size:13px; color:var(--ink-soft); font-weight:700; }
+  .score-pill{ font-size:13px; background:var(--deep-green); color:var(--gold-light); padding:5px 12px; border-radius:999px; font-weight:700; }
+  .progress-track{ height:6px; background: rgba(14,59,46,0.12); border-radius:999px; overflow:hidden; margin-bottom:26px; }
+  .progress-fill{ height:100%; background: linear-gradient(90deg, var(--gold), var(--deep-green)); border-radius:999px; transition: width .35s ease; }
+  .question{ font-family:'Traditional Arabic','Arial',serif; font-size:20px; line-height:1.85; color:var(--ink); margin: 0 0 22px; }
+  .options{ display:flex; flex-direction:column; gap:10px; margin-bottom:22px; }
+  .opt{
+    text-align:right; background: var(--cream); border: 1.5px solid rgba(14,59,46,0.18);
+    border-radius:10px; padding:14px 16px; font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif; font-size:15.5px;
+    color:var(--ink); cursor:pointer; transition: border-color .12s ease, background .12s ease;
+    display:flex; align-items:center; gap:12px;
+  }
+  .opt .marker{ flex:none; width:26px;height:26px; border-radius:50%; border:1.5px solid rgba(14,59,46,0.35); display:flex;align-items:center;justify-content:center; font-size:12px;font-weight:700;color:var(--ink-soft); }
+  .opt:hover:not(.locked){ border-color: var(--gold); background:#fbf6e9; }
+  .opt.selected{ border-color: var(--deep-green); background:#e8f0ea; }
+  .opt.correct{ border-color: var(--ok); background:#e5f2e8; }
+  .opt.correct .marker{ background:var(--ok); border-color:var(--ok); color:#fff; }
+  .opt.wrong{ border-color: var(--danger); background:#f7e9e5; }
+  .opt.wrong .marker{ background:var(--danger); border-color:var(--danger); color:#fff; }
+  .opt.locked{ cursor:default; }
+
+  .feedback{ font-size:14px; padding:12px 14px; border-radius:8px; margin-bottom:18px; line-height:1.8; display:none; }
+  .feedback.show{ display:block; }
+  .feedback.ok{ background:#e5f2e8; color:var(--ok); }
+  .feedback.no{ background:#f7e9e5; color:var(--danger); }
+
+  .nav-row{ display:flex; gap:10px; }
+  .nav-row button.primary{ flex:1; }
+
+  .result h2{ font-family:'Traditional Arabic','Arial',serif; text-align:center; color:var(--deep-green); font-size:24px; margin:0 0 4px; }
+  .result .sub{ text-align:center; color:var(--ink-soft); margin-bottom:26px; font-size:14.5px; }
+  .ring-wrap{ display:flex; justify-content:center; margin-bottom:26px; }
+  .ring{ width:150px;height:150px; border-radius:50%; display:flex;align-items:center;justify-content:center; background: conic-gradient(var(--gold) calc(var(--pct) * 1%), rgba(14,59,46,0.10) 0); position:relative; }
+  .ring::before{ content:""; position:absolute; width:118px;height:118px; border-radius:50%; background: var(--cream-2); }
+  .ring .val{ position:relative; font-family:'Traditional Arabic','Arial',serif; font-size:26px; color:var(--deep-green); font-weight:700; text-align:center; }
+  .remark{ text-align:center; font-size:15px; color:var(--ink); background:var(--cream); border:1px solid rgba(14,59,46,0.12); border-radius:10px; padding:16px; margin-bottom:20px; line-height:1.9; }
+  .save-note{ text-align:center; font-size:12.5px; color:var(--ink-soft); margin-bottom:20px; line-height:1.8; }
+  .review{ margin-bottom:22px; }
+  .review h3{ font-family:'Traditional Arabic','Arial',serif; font-size:17px; color:var(--deep-green); margin:0 0 12px; }
+  .review-item{ border-right:3px solid var(--danger); background: var(--cream); border-radius:8px; padding:12px 14px; margin-bottom:10px; font-size:13.5px; line-height:1.9; }
+  .review-item .q{ font-weight:700; color:var(--ink); margin-bottom:4px; }
+  .review-item .a{ color:var(--danger); }
+  .review-item .c{ color:var(--ok); }
+  .btn-row{ display:flex; gap:10px; }
+  button.secondary{
+    flex:1; background: transparent; border:1.5px solid var(--deep-green); color: var(--deep-green);
+    border-radius:10px; padding:14px; font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif; font-weight:700; font-size:15px; cursor:pointer;
+  }
+  button.secondary:hover{ background: rgba(14,59,46,0.06); }
+
+  .admin-link{ display:block; text-align:center; font-size:12.5px; color:var(--ink-soft); margin-top:16px; cursor:pointer; text-decoration:underline; }
+  table.results-table{ width:100%; border-collapse:collapse; font-size:13.5px; margin-bottom:18px; }
+  table.results-table th, table.results-table td{ padding:9px 8px; border-bottom:1px solid rgba(14,59,46,0.14); text-align:right; }
+  table.results-table th{ color:var(--deep-green); font-weight:700; }
+  textarea.copy-area{
+    width:100%; min-height:150px; font-family:-apple-system,'Segoe UI',Tahoma,Arial,sans-serif; font-size:13px;
+    border:1.5px solid rgba(14,59,46,0.2); border-radius:10px; padding:12px; background:var(--cream); margin-bottom:14px; color:var(--ink);
+  }
+  .footnote{ text-align:center; font-size:12px; color: var(--ink-soft); margin-top:18px; line-height:1.8; }
+
+  @media (max-width:480px){
+    .pad{ padding:24px 18px; }
+    .facts{ grid-template-columns:repeat(3,1fr); }
+    .question{ font-size:18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <span class="acad">🌷 أكاديمية رضا الرحمن مبتغانا 🌷</span>
+    <h1>🍂 إمتحان الجزء الأول من سورة البقرة 🍂</h1>
+  </div>
+  <div class="card">
+    <div class="mosaic"></div>
+    <div class="pad" id="app"></div>
+    <div class="mosaic"></div>
+  </div>
+  <p class="footnote" id="footnote">امتحان تعليمي — يغطي الحزب الأول والثاني من سورة البقرة (معاني الآيات، وبدايات ونهايات بعضها)</p>
+</div>
+
+<script>
+const QUESTIONS = [
+  { q:"بأي عبارة تختم الآية الثانية من سورة البقرة (بعد «لا ريب فيه»)؟", opts:["نور للعالمين","هدى للمتقين","رحمة للمؤمنين","ذكرى للعابدين"], correct:1 },
+  { q:"الآية التي تبدأ بـ«يا أيها الناس اعبدوا ربكم» تدعو الناس إلى:", opts:["الصبر على البلاء","توحيد الله وعبادته وحده","الهجرة","الجهاد"], correct:1 },
+  { q:"الآية التي تبدأ بـ«وإذ قال ربك للملائكة» تتحدث عن:", opts:["إخبار الله الملائكة بجعل آدم خليفة في الأرض","نزول المطر","خلق السماوات","قصة نوح"], correct:0 },
+  { q:"الآية التي تختم بـ«وكان من الكافرين» تتحدث عن:", opts:["توبة آدم","رفض إبليس السجود لآدم واستكباره","خروج آدم من الجنة","خلق حواء"], correct:1 },
+  { q:"الآية التي تبدأ بـ«يا بني إسرائيل اذكروا نعمتي» يوجَّه فيها الخطاب إلى:", opts:["قريش","بني إسرائيل","أهل مكة","الأنصار"], correct:1 },
+  { q:"آية «وأقيموا الصلاة وآتوا الزكاة» تختم بالأمر بـ:", opts:["الركوع مع الراكعين","الصبر مع الصابرين","الصدق مع الصادقين","الذكر مع الذاكرين"], correct:0 },
+  { q:"آية «واستعينوا بالصبر والصلاة» تصف هذه الاستعانة بأنها كبيرة إلا على:", opts:["الصابرين","الخاشعين","المهاجرين","الصائمين"], correct:1 },
+  { q:"قصة أمر بني إسرائيل بذبح البقرة جاءت بعد ذكر قصة:", opts:["قتيل اختلفوا فيمن قتله","عبادتهم العجل","خروجهم من مصر","عصيانهم لموسى في الطعام"], correct:0 },
+  { q:"في الحزب الثاني، لما طلب بنو إسرائيل رؤية الله جهرة، أخذتهم:", opts:["الريح","الصاعقة","العاصفة","الظلمة"], correct:1 },
+  { q:"آية تختم بعبارة «وأنتم معرضون» تتحدث عن:", opts:["نقض بني إسرائيل لميثاقهم","نزول التوراة","بناء الكعبة","هجرة إبراهيم"], correct:0 },
+  { q:"آية «ولقد آتينا موسى الكتاب وقفينا من بعده بالرسل» تذكر أن الله أيّد عيسى بـ:", opts:["الملائكة","روح القدس","التوراة","المعجزات فقط"], correct:1 },
+  { q:"في هذا الجزء، نزل على بني إسرائيل في التيه المنّ و:", opts:["السلوى","الرطب","الزيتون","العسل"], correct:0 },
+  { q:"الآية التي تبدأ بـ«وإذ ابتلى إبراهيم ربه بكلمات» تفتتح الحديث عن:", opts:["هجرة إبراهيم","ابتلاء الله لإبراهيم وجعله إمامًا للناس","زواج إبراهيم","رحلة إبراهيم إلى مصر"], correct:1 },
+  { q:"الآية التي تبدأ بـ«وإذ يرفع إبراهيم القواعد من البيت» تصف:", opts:["بناء إبراهيم وإسماعيل للكعبة","حفر بئر زمزم","هدم الأصنام","رحلة الحج"], correct:0 },
+  { q:"آية «قولوا آمنا بالله وما أنزل إلينا» تُعلّم المؤمنين:", opts:["الإيمان بجميع الأنبياء دون تفريق بينهم","تفضيل نبي على آخر","إنكار الكتب السابقة","الاكتفاء بالإيمان بموسى فقط"], correct:0 },
+  { q:"في الحزب الأول، وصف الله المتقين بأنهم يؤمنون بـ:", opts:["الغيب","الشهادة فقط","الحساب وحده","القدر فقط"], correct:0 },
+  { q:"في الحزب الأول، وصف القرآن حال الذين كفروا عند إنذارهم بأنهم:", opts:["يتوبون سريعًا","لا يؤمنون","يترددون","يستمعون بانتباه"], correct:1 },
+  { q:"وصف القرآن ملة إبراهيم في هذا الجزء من السورة بأنها:", opts:["الحنيفية","اليهودية","الوثنية","المجوسية"], correct:0 },
+  { q:"وصية إبراهيم لبنيه عند وفاته -كما وردت في هذا الجزء- كانت بالتمسك بـ:", opts:["الدين الذي اصطفاه الله لهم (الإسلام)","جمع المال","السفر الدائم","الزراعة"], correct:0 },
+  { q:"يضرب القرآن مثل المنافقين في هذا الجزء بمثل:", opts:["الذي استوقد نارًا","الشجرة الطيبة","النحلة","العنكبوت"], correct:0 },
+];
+
+const POINTS_PER_Q = 5;
+const TOTAL_POINTS = QUESTIONS.length * POINTS_PER_Q;
+const ADMIN_PIN = "2026";
+
+// إعداد جوجل فورمز — يعمل من أي متصفح خارج Claude
+const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSe8AyyFKlbSP4Mmco0UNvrGz6PwenQvYPzySu4hC2-FZyA4Fg/formResponse";
+const GOOGLE_FORM_ENTRIES = { name:"entry.812323253", age:"entry.39424833", score:"entry.885178619" };
+
+async function submitToGoogleForm(name, age, scoreText){
+  if(!GOOGLE_FORM_ACTION || !GOOGLE_FORM_ENTRIES.name) return false;
+  try{
+    const body = new URLSearchParams();
+    body.append(GOOGLE_FORM_ENTRIES.name, name);
+    body.append(GOOGLE_FORM_ENTRIES.age, age);
+    body.append(GOOGLE_FORM_ENTRIES.score, scoreText);
+    await fetch(GOOGLE_FORM_ACTION, { method:"POST", mode:"no-cors", body });
+    return true;
+  }catch(e){ return false; }
+}
+
+let current = 0;
+let score = 0;
+let answers = [];
+let locked = false;
+let participant = { name:"", age:"" };
+
+const app = document.getElementById('app');
+
+function renderIntro(){
+  app.innerHTML = `
+    <div class="intro">
+      <div class="intro-motif">
+        <svg viewBox="0 0 76 76" width="76" height="76">
+          <circle cx="38" cy="38" r="36" fill="none" stroke="#b9903f" stroke-width="1.3"/>
+          <path d="M38 6 L44 30 L68 24 L48 40 L60 62 L38 48 L16 62 L28 40 L8 24 L32 30 Z" fill="none" stroke="#0e3b2e" stroke-width="1.3" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>سجلي بياناتك وابدئي</h2>
+      <p class="lead">امتحان من ${QUESTIONS.length} سؤالًا حول الحزب الأول والثاني من سورة البقرة، كل سؤال بـ ${POINTS_PER_Q} نقاط (المجموع ${TOTAL_POINTS}).</p>
+      <div class="facts">
+        <div class="fact"><b>${QUESTIONS.length}</b><span>سؤال</span></div>
+        <div class="fact"><b>${POINTS_PER_Q}</b><span>نقاط لكل سؤال</span></div>
+        <div class="fact"><b>${TOTAL_POINTS}</b><span>المجموع الكلي</span></div>
+      </div>
+      <label class="field-label">الاسم</label>
+      <input class="field-input" id="nameInput" type="text" placeholder="اكتبي اسمك هنا">
+      <label class="field-label">السن</label>
+      <input class="field-input" id="ageInput" type="number" min="1" max="120" placeholder="اكتبي سنك هنا">
+      <button class="primary" id="startBtn">ابدأ الامتحان</button>
+      <span class="admin-link" id="adminLink">لوحة النتائج (للمشرفة)</span>
+    </div>
+  `;
+  document.getElementById('startBtn').onclick = () => {
+    const name = document.getElementById('nameInput').value.trim();
+    const age = document.getElementById('ageInput').value.trim();
+    if(!name || !age){
+      alert("من فضلك اكتبي الاسم والسن قبل البدء.");
+      return;
+    }
+    participant = { name, age };
+    current=0; score=0; answers=[];
+    renderQuestion();
+  };
+  document.getElementById('adminLink').onclick = renderAdminGate;
+}
+
+function renderQuestion(){
+  locked = false;
+  const item = QUESTIONS[current];
+  const pct = Math.round((current / QUESTIONS.length) * 100);
+  app.innerHTML = `
+    <div class="quiz-head">
+      <span class="qcount">السؤال ${current+1} من ${QUESTIONS.length}</span>
+      <span class="score-pill">النقاط: ${score} / ${TOTAL_POINTS}</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <p class="question">${item.q}</p>
+    <div class="options" id="optsWrap"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="nav-row">
+      <button class="primary" id="nextBtn" disabled>التالي</button>
+    </div>
+  `;
+  const wrap = document.getElementById('optsWrap');
+  const letters = ['أ','ب','ج','د'];
+  item.opts.forEach((opt, i) => {
+    const div = document.createElement('div');
+    div.className = 'opt';
+    div.innerHTML = `<span class="marker">${letters[i]}</span><span>${opt}</span>`;
+    div.onclick = () => selectOption(i, div);
+    wrap.appendChild(div);
+  });
+}
+
+function selectOption(i, el){
+  if(locked) return;
+  locked = true;
+  const item = QUESTIONS[current];
+  const allOpts = document.querySelectorAll('.opt');
+  allOpts.forEach(o => o.classList.add('locked'));
+
+  const isCorrect = i === item.correct;
+  if(isCorrect) score += POINTS_PER_Q;
+  answers.push({q:item.q, chosen:item.opts[i], correctText:item.opts[item.correct], isCorrect});
+
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  if(!isCorrect){ allOpts[item.correct].classList.add('correct'); }
+
+  const fb = document.getElementById('feedback');
+  fb.classList.add('show', isCorrect ? 'ok' : 'no');
+  fb.textContent = isCorrect ? `إجابة صحيحة (+${POINTS_PER_Q} نقاط).` : `إجابة غير صحيحة. الصحيح: ${item.opts[item.correct]}`;
+
+  document.getElementById('nextBtn').disabled = false;
+  document.getElementById('nextBtn').onclick = () => {
+    current++;
+    if(current < QUESTIONS.length) renderQuestion();
+    else finishAndRenderResult();
+  };
+}
+
+async function finishAndRenderResult(){
+  const pct = Math.round((score / TOTAL_POINTS) * 100);
+  const scoreText = `${score}/${TOTAL_POINTS} (${pct}%)`;
+  let savedSomewhere = false;
+  let saveNote = "";
+
+  // محاولة 1: تخزين Claude المشترك (يعمل فقط داخل تطبيق Claude)
+  try{
+    const key = `results:${participant.name}-${Date.now()}`;
+    const payload = JSON.stringify({
+      name: participant.name, age: participant.age, score: score,
+      total: TOTAL_POINTS, percentage: pct, date: new Date().toISOString()
+    });
+    const res = await window.storage.set(key, payload, true);
+    if(res) savedSomewhere = true;
+  }catch(e){ /* غير متاح خارج Claude، لا مشكلة */ }
+
+  // محاولة 2: جوجل فورمز (يعمل من أي متصفح)
+  const gform = await submitToGoogleForm(participant.name, participant.age, scoreText);
+  if(gform) savedSomewhere = true;
+
+  saveNote = savedSomewhere
+    ? "تم إرسال نتيجتك إلى قائمة المجموعة."
+    : "لم يتم إعداد الإرسال التلقائي بعد — انسخي نتيجتك من الأسفل وأرسليها يدويًا.";
+
+  renderResult(pct, saveNote);
+}
+
+function renderResult(pct, saveNote){
+  let remark;
+  if(pct >= 90) remark = "ماشاء الله، إتقان ممتاز لهذا الجزء من السورة.";
+  else if(pct >= 70) remark = "نتيجة جيدة جدًا، بقيت مراجعة بسيطة لبعض التفاصيل.";
+  else if(pct >= 50) remark = "نتيجة متوسطة، يُنصح بمراجعة الآيات مرة أخرى بتمعّن.";
+  else remark = "تحتاجين مراجعة أعمق لهذا الجزء من السورة، لا بأس، أعيدي المحاولة.";
+
+  const wrongAnswers = answers.filter(a => !a.isCorrect);
+  const copyText = `الاسم: ${participant.name}\nالسن: ${participant.age}\nالنتيجة: ${score} / ${TOTAL_POINTS} (${pct}%)`;
+
+  app.innerHTML = `
+    <div class="result">
+      <h2>نتيجة: ${participant.name}</h2>
+      <p class="sub">${score} من ${TOTAL_POINTS} نقطة</p>
+      <div class="ring-wrap"><div class="ring" style="--pct:${pct}"><span class="val">${pct}%</span></div></div>
+      <p class="remark">${remark}</p>
+      <p class="save-note">${saveNote}</p>
+      ${wrongAnswers.length ? `
+      <div class="review">
+        <h3>مراجعة الأسئلة التي أخطأتِ فيها</h3>
+        ${wrongAnswers.map(a => `
+          <div class="review-item">
+            <div class="q">${a.q}</div>
+            <div class="a">إجابتك: ${a.chosen}</div>
+            <div class="c">الصحيح: ${a.correctText}</div>
+          </div>
+        `).join('')}
+      </div>` : ''}
+      <textarea class="copy-area" readonly>${copyText}</textarea>
+      <div class="btn-row">
+        <button class="secondary" id="copyBtn">نسخ نتيجتي</button>
+        <button class="secondary" id="retryBtn">إعادة المحاولة</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('retryBtn').onclick = renderIntro;
+  document.getElementById('copyBtn').onclick = () => {
+    const ta = document.querySelector('.copy-area');
+    ta.select();
+    document.execCommand('copy');
+    document.getElementById('copyBtn').textContent = "تم النسخ ✓";
+  };
+}
+
+function renderAdminGate(){
+  app.innerHTML = `
+    <div class="intro">
+      <h2>لوحة النتائج</h2>
+      <p class="lead">هذه الصفحة مخصصة للمشرفة فقط، وتعمل فقط إذا فُتح الموقع من داخل تطبيق Claude. النتائج الأساسية لكل الطالبات موجودة فـ Google Sheet المرتبط بالنموذج. أدخلي الرمز السري لعرض ما تم حفظه هنا (إن وجد).</p>
+      <label class="field-label">الرمز السري</label>
+      <input class="field-input" id="pinInput" type="password" placeholder="****">
+      <button class="primary" id="pinBtn">دخول</button>
+      <span class="admin-link" id="backLink">رجوع</span>
+    </div>
+  `;
+  document.getElementById('backLink').onclick = renderIntro;
+  document.getElementById('pinBtn').onclick = () => {
+    if(document.getElementById('pinInput').value === ADMIN_PIN){
+      renderAdminResults();
+    } else {
+      alert("الرمز غير صحيح.");
+    }
+  };
+}
+
+async function renderAdminResults(){
+  app.innerHTML = `<div class="intro"><h2>جاري التحميل...</h2></div>`;
+  let rows = [];
+  try{
+    const list = await window.storage.list('results:', true);
+    const keys = (list && list.keys) ? list.keys : [];
+    for(const k of keys){
+      try{
+        const r = await window.storage.get(k, true);
+        if(r && r.value){ rows.push(JSON.parse(r.value)); }
+      }catch(e){}
+    }
+  }catch(e){}
+
+  rows.sort((a,b) => b.score - a.score);
+
+  const tableRows = rows.map(r => `
+    <tr>
+      <td>${r.name}</td>
+      <td>${r.age}</td>
+      <td>${r.score} / ${r.total}</td>
+      <td>${r.percentage}%</td>
+    </tr>
+  `).join('');
+
+  const copyAll = rows.map((r,i) => `${i+1}. ${r.name} (${r.age} سنة) — ${r.score}/${r.total} (${r.percentage}%)`).join('\n');
+
+  app.innerHTML = `
+    <div class="intro">
+      <h2>نتائج المشاركات</h2>
+      <p class="lead">${rows.length ? `عدد المشاركات: ${rows.length}` : "لا توجد نتائج محفوظة بعد."}</p>
+      ${rows.length ? `
+      <table class="results-table">
+        <thead><tr><th>الاسم</th><th>السن</th><th>النقاط</th><th>النسبة</th></tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+      <textarea class="copy-area" readonly>${copyAll}</textarea>
+      <div class="btn-row">
+        <button class="secondary" id="copyAllBtn">نسخ القائمة كاملة</button>
+      </div>` : ''}
+      <span class="admin-link" id="backLink2">رجوع</span>
+    </div>
+  `;
+  document.getElementById('backLink2').onclick = renderIntro;
+  const copyBtn = document.getElementById('copyAllBtn');
+  if(copyBtn){
+    copyBtn.onclick = () => {
+      const ta = document.querySelector('.copy-area');
+      ta.select();
+      document.execCommand('copy');
+      copyBtn.textContent = "تم النسخ ✓";
+    };
+  }
+}
+
+renderIntro();
+</script>
+</body>
+</html>
